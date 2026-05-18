@@ -11,7 +11,7 @@ venv/
 .env/
 poetry.lock
 .cache/
-.vscode/
+# .vscode/
 .idea/
 .DS_Store
 Thumbs.db

@@ -21,11 +21,14 @@ class Environment(str, Enum):
 
 
 class DatabaseSettings(BaseModel):
+    backend: Literal["postgres", "mssql"] = "postgres"
+
     host: str = "localhost"
     port: int = 5432
     username: str = "postgres"
     password: SecretStr
     database: str = "app"
+    schema: str = "public"
 
     @property
     def url(self) -> str:
@@ -54,25 +57,19 @@ class AwsSettings(BaseModel):
 
 class Settings(BaseSettings):
     """
-    Main application settings.
+    Environment variables use: APP_
 
-    Environment variables use:
-        APP_
-
-    Nested settings use:
-        __
+    Nested settings use: __
 
     Example:
         APP_DB__HOST=localhost
         APP_DB__PASSWORD=secret
     """
 
-    # -----------------------------------------------------
     # Pydantic Settings Config
-    # -----------------------------------------------------
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file="dev.env",
         env_prefix="APP_",
         env_nested_delimiter="__",
         case_sensitive=False,
