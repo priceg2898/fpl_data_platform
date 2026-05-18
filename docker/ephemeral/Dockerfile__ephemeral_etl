@@ -9,12 +9,12 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --no-cache-dir poetry
 
-COPY python/etl__project/pyproject.toml python/etl__project/poetry.lock .
+COPY python .
+
+WORKDIR ./etl
 
 RUN poetry install --no-root \
- && rm -rf /root/.cache/pypoetry
-
-COPY python/src .
+  && rm -rf /root/.cache/pypoetry
 
 ENV PYTHONPATH=/opt/app
 

@@ -1,7 +1,5 @@
-from collections.abc import Iterator
-from contextlib import contextmanager
-
 import pyodbc
+from contextlib import contextmanager
 
 
 @contextmanager
@@ -11,7 +9,7 @@ def mssql_connection(
     username: str,
     password: str,
     driver: str = "ODBC Driver 18 for SQL Server",
-) -> Iterator[pyodbc.Connection]:
+):
     conn_str = (
         f"DRIVER={{{driver}}};"
         f"SERVER={server};"
@@ -22,15 +20,12 @@ def mssql_connection(
     )
 
     conn = pyodbc.connect(conn_str)
-
     try:
         yield conn
         conn.commit()
-
     except Exception:
         conn.rollback()
         raise
-
     finally:
         conn.close()
 
