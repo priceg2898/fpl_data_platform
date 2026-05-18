@@ -6,9 +6,10 @@
 
 
 - Next steps
-  - Create simple script to insert values into a db 
-  - Get it working locally using env vars
-  - Get it working in AWS using injected env vars
-  - Get it working using the Spark API to process
+  - ~~Create simple script to insert values into a db~~ 
+  - ~~Get it working locally using env vars~~
+  - Get it working locally in a container
+  - Get that container into a container store
+  - Get it working in AWS in the container
 
 **After that you will know the next steps**

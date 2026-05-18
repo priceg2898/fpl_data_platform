@@ -28,7 +28,6 @@ class DatabaseSettings(BaseModel):
     username: str = "postgres"
     password: SecretStr
     database: str = "app"
-    schema: str = "public"
 
     @property
     def url(self) -> str:
