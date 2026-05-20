@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "shared"
+version = "0.1.0"
+description = ""
+authors = ["PriceGr <greg.price@unipartrail.com>"]
+
+packages = [
+  { include = "shared", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+loguru = "*"
+pydantic = "*"
+pydantic-settings = "*"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

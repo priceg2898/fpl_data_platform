@@ -15,7 +15,8 @@
 </div>
 -->
 
-## Data Platform built from scratch
+# Data Platform built from scratch
+### Don't let perfect be the enemy of good. Iterate, iterate, iterate.
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://airflow.apache.org/) -->
 

@@ -1,10 +1,20 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: echo "Hello world"
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Ruff
+        run: pip install ruff==0.15.12
+      - name: Run linter
+        run: ruff check .
+      - name: Check formatting
+        run: ruff format --check .

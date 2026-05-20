@@ -1,5 +1,0 @@
-logs
-.env
-poetry.lock
-__pycache__/
-*.pyc

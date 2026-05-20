@@ -1,0 +1,6 @@
+{
+  "python.analysis.extraPaths": [
+    "./python/etl/src",
+    "./python/shared/src"
+  ]
+}

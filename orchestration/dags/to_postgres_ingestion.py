@@ -6,7 +6,7 @@ from airflow.decorators import task
 from airflow.operators.empty import EmptyOperator
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.providers.standard.operators.python import BranchPythonOperator
-from airflow.datasets import Dataset
+# from airflow.datasets import Dataset
 
 
 # ----------------------------
@@ -33,14 +33,12 @@ with DAG(
     catchup=False,
     tags=["ingestion", "materials"],
 ) as dag:
-
     # ----------------------------
     # 1. Run ETL per table
     # ----------------------------
     run_etl_tasks = []
 
     for table_id in daily_extracts:
-
         config = {
             "id": table_id,
             "triggered_by": "airflow",
@@ -84,13 +82,11 @@ with DAG(
 
         return any(item.get("has_updates") for item in parsed)
 
-
     # ----------------------------
     # 3. Decide branch
     # ----------------------------
     def decide(has_updates: bool):
         return "emit_dataset" if has_updates else "skip_dataset"
-
 
     # ----------------------------
     # 4. Dataset emit (ONLY ONE PLACE)
@@ -103,7 +99,6 @@ with DAG(
     skip_dataset = EmptyOperator(
         task_id="skip_dataset",
     )
-
 
     # ----------------------------
     # 5. Wire everything
@@ -131,7 +126,6 @@ with DAG(
     catchup=False,
     tags=["dbt", "transform"],
 ) as dbt_dag:
-
     run_pwd = DockerOperator(
         task_id="pwd",
         image="data-platform-ephemeral__etl:latest",

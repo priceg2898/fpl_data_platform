@@ -9,13 +9,14 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --no-cache-dir poetry
 
-COPY python/etl__project/pyproject.toml python/etl__project/poetry.lock .
+COPY python/etl ./etl
+COPY python/shared ./shared
 
-RUN poetry install --no-root \
- && rm -rf /root/.cache/pypoetry
+WORKDIR /opt/app/etl
 
-COPY python/src .
+RUN poetry config virtualenvs.create false \
+ && poetry install --no-interaction --no-cache
 
-ENV PYTHONPATH=/opt/app
+# CMD ["python", "-m", "etl.end_to_end_etl"]
 
 CMD ["tail", "-f", "/dev/null"]
