@@ -68,7 +68,7 @@ class Settings(BaseSettings):
     # Pydantic Settings Config
 
     model_config = SettingsConfigDict(
-        env_file="dev.env",
+        env_file=".env.dev",
         env_prefix="APP_",
         env_nested_delimiter="__",
         case_sensitive=False,
