@@ -8,7 +8,7 @@
 - Next steps
   - ~~Create simple script to insert values into a db~~ 
   - ~~Get it working locally using env vars~~
-  - Get it working locally in a container
+  - ~~Get it working locally in a container~~
   - Get that container into a container store
   - Get it working in AWS in the container
 
