@@ -10,4 +10,6 @@
 | `docker network prune` | Remove unused networks |
 | `docker system prune -a --volumes` | Aggressive cleanup |
 | `docker system prune -af && docker builder prune -af` | Common CI cleanup |
-
+| `docker build --no-cache -f ./docker/ephemeral/Dockerfile__ephemeral_etl -t 762687106733.dkr.ecr.eu-west-2.amazonaws.com/python-etl:latest .` | Build and tag docker image |
+| `docker push 762687106733.dkr.ecr.eu-west-2.amazonaws.com/python-etl:latest` | push to aws |
+| `docker build --no-cache -f ./docker/ephemeral/Dockerfile__ephemeral_etl -t 762687106733.dkr.ecr.eu-west-2.amazonaws.com/python_etl:$(git rev-parse --short HEAD) .` | tag with git commit |
